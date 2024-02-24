@@ -6,4 +6,4 @@ Lead:
 - Kevin Shang
 
 Members:
-- Test Student
+- Victoria Liu
