@@ -7,3 +7,4 @@ Lead:
 
 Members:
 - Test Student
+- William Leung
