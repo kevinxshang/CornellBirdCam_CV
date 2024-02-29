@@ -6,5 +6,6 @@ Lead:
 - Kevin Shang
 
 Members:
+- Victoria Liu
 - Bella Hu
 - Thanakorn Rojanasasitornwong
