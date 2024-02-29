@@ -7,3 +7,5 @@ Lead:
 
 Members:
 - Victoria Liu
+- Bella Hu
+- Thanakorn Rojanasasitornwong
