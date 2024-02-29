@@ -6,5 +6,7 @@ Lead:
 - Kevin Shang
 
 Members:
-- Test Student
 - William Leung
+- Victoria Liu
+- Bella Hu
+- Thanakorn Rojanasasitornwong
