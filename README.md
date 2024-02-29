@@ -6,4 +6,5 @@ Lead:
 - Kevin Shang
 
 Members:
+- Bella Hu
 - Thanakorn Rojanasasitornwong
