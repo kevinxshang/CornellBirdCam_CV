@@ -7,3 +7,4 @@ Lead:
 
 Members:
 - Bella Hu
+- Thanakorn Rojanasasitornwong
