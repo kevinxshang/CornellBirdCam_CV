@@ -10,3 +10,4 @@ Members:
 - Victoria Liu
 - Bella Hu
 - Thanakorn Rojanasasitornwong
+- Shanay Champaneri
