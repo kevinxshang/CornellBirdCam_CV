@@ -4,6 +4,11 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 import time
 from datetime import datetime
+import base64
+import requests
+import os
+from os import listdir
+import pandas as pd
 
 # Specify the path to Chromedriver
 # Specify bird cam URL
@@ -11,8 +16,8 @@ from datetime import datetime
 # Specify screenshots frequency
 # Adjust if necessary 
 chromedriver_path = './chromedriver-mac-arm64/chromedriver'
-cam_url = 'https://www.youtube.com/watch?v=1ZL6py8uo3w'
-iterations_count = 2
+cam_url = 'https://www.youtube.com/watch?v=NgZNlISgfLE'
+iterations_count = 5
 screenshots_frequency = 5
 
 # Specify Chrome Options for headless
@@ -51,9 +56,68 @@ try:
     for _ in range(iterations_count):
         # Take and save with "shots_frequency" pause time
         timestamp = int(time.time())
-        date_time_format = datetime.utcfromtimestamp(timestamp).strftime('%Y-%m-%d %H:%M:%S')
-        driver.save_screenshot(f'screenshot_{date_time_format}.png')
+        date_time_format = datetime.fromtimestamp(timestamp).strftime('%Y-%m-%d %H:%M:%S')
+        driver.save_screenshot(f'screenshots/screenshot_{date_time_format}.png')
         time.sleep(screenshots_frequency)
+    
 finally:
     # Clean up and close the browser window
     driver.quit()
+
+def encode_image(image_path):
+  with open(image_path, "rb") as image_file:
+    return base64.b64encode(image_file.read()).decode('utf-8')
+
+def process_image_and_prompt(input_image=None):
+
+    # Path to your image
+#     image_path = "path_to_your_image.jpg"
+
+    # Getting the base64 string
+    base64_image = encode_image(input_image)
+
+    headers = {
+      "Content-Type": "application/json",
+      "Authorization": f"Bearer {OPENAI_API_KEY}"
+    }
+
+    payload = {
+      "model": "gpt-4-vision-preview",
+      "messages": [
+        {
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Does this image contain a bird? Only respond with True or False."
+            },
+            {
+              "type": "image_url",
+              "image_url": {
+                "url": f"data:image/jpeg;base64,{base64_image}"
+              }
+            }
+          ]
+        }
+      ],
+      "max_tokens": 300
+    }
+
+    response = requests.post("https://api.openai.com/v1/chat/completions", headers=headers, json=payload)
+    if response.status_code == 200:
+        json_response = response.json()
+        content = json_response['choices'][0]['message']['content']
+        return content
+    else:
+        return f"Error: {response.status_code} - {response.reason}"
+    
+DIR = "./screenshots"
+df = pd.DataFrame(columns = ["screenshot", "bird_tf"])
+screenshot_names = []
+results = []
+for img in os.listdir(DIR):
+    screenshot_names.append(img)
+    results.append(process_image_and_prompt(f"./screenshots/{img}"))
+df["screenshot"] = screenshot_names
+df["bird_tf"] = results
+df.to_csv("data.csv")
