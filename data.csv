@@ -1,6 +1,11 @@
-,screenshot,bird_tf
-0,screenshot_2024-03-18 13:45:12.png,True
-1,screenshot_2024-03-18 13:45:07.png,True
-2,screenshot_2024-03-18 13:44:50.png,True
-3,screenshot_2024-03-18 13:45:01.png,True
-4,screenshot_2024-03-18 13:44:56.png,True
+,Unnamed: 0,screenshots,bird_tf
+0,0.0,screenshots/screenshot_2024-03-18 19:25:42.png,True
+1,1.0,screenshots/screenshot_2024-03-18 19:25:51.png,True
+2,2.0,screenshots/screenshot_2024-03-18 19:26:01.png,True.
+3,3.0,screenshots/screenshot_2024-03-18 19:26:09.png,True
+4,4.0,screenshots/screenshot_2024-03-18 19:26:19.png,False
+0,,screenshots/screenshot_2024-03-18 19:32:22.png,False
+1,,screenshots/screenshot_2024-03-18 19:32:31.png,False.
+2,,screenshots/screenshot_2024-03-18 19:32:40.png,False.
+3,,screenshots/screenshot_2024-03-18 19:32:51.png,False.
+4,,screenshots/screenshot_2024-03-18 19:33:00.png,False
